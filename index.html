@@ -1,18 +1,212 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>My Web Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            font-family: "Georgia", "Songti SC", serif;
+        }
+        .book-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 1600px;
+    width: 98vw;
+            aspect-ratio: 16 / 10;
+            background: url("assets/book-template.jpg") no-repeat center;
+            background-size: contain;
+        }
+        .book-pages {
+            position: absolute;
+            inset: 12% 8% 15% 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2%;
+            pointer-events: none;
+        }
+        .book-pages > * {
+            pointer-events: auto;
+        }
+        .page {
+            min-height: 0;
+            overflow: visible;
+        }
+        .page-left {
+            padding: 1rem;
+            position: relative;
+        }
+        .book-item {
+            position: absolute;
+            cursor: move;
+            z-index: 2;
+            display: inline-block;
+        }
+        .book-item img {
+            display: block;
+            width: auto;
+            pointer-events: none;
+        }
+        .book-item--word-web img { max-height: 140px; }
+        .book-item--observation img { max-height: 120px; }
+        .book-item--small-book img { max-height: 250px; }
+        .book-item--cursive img { max-height: 220px; }
+        .book-item--yzk img { max-height: 100px; }
+        .book-item--snoopy img { max-height: 230px; }
+        .book-item--sticker img { max-height: 370px; }
+        .book-item--me img { max-height:130px; }
+        .book-item--arrow img { max-height: 100px; }
+        .book-item--cams-word img { max-height: 130px; }
+        .book-item--cam img { max-height: 130px; }
+        .book-item--japanese img { max-height: 180px; }
+        .book-item--person img { max-height: 500px; }
+        .book-item--scrapbook img { max-height: 200px; }
+        .book-item--im img { max-height: 200px; }
+        .book-item--rabbit img { max-height:220px; }
+        .book-item--milky-way img { max-height: 220px; }
+        .book-item--cursive-corner img { max-height: 100px; }
+        .book-item--point img { max-height: 120px; }
+        .book-item--behind {
+            z-index: 1;
+        }
+        .page-right {
+            padding: 1rem;
+            position: relative;
+        }
+        .page h1 {
+            margin: 0 0 0.5rem;
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            color: #2c1810;
+        }
+        .page p {
+            margin: 0;
+            font-size: clamp(0.85rem, 1.8vw, 1rem);
+            color: #3d2817;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome!</h1>
-    <p>This is some content.</p>
-    <a href="inside.html">
-    <img src="assets/book-cover.png" alt="image of book cover" width="200" height="300">
-    </a>
-    <!-- Link to JavaScript file -->
-    <script src="my-script.js"></script>
+    <div class="book-wrapper">
+        <div class="book-pages">
+            <div class="page page-left">
+                <a href="#" class="book-item book-item--word-web" id="word-web-item" style="left: 0; top: 0;" title="draggable">
+                    <img src="assets/word-web.png" alt="WORD WEB" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--observation" style="left: 0; top: 0;" title="draggable">
+                    <img src="assets/observation.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--small-book" style="left: 0; bottom: 2px;" title="draggable">
+                    <img src="assets/small-book.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--cursive" style="left: 20%; top: 65%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/cursive.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--yzk" style="left: 50%; bottom: 0; transform: translateX(-50%);" title="draggable">
+                    <img src="assets/yzk.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--snoopy book-item--behind" style="left: 65%; top: 50%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/snoopy.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--sticker" style="left: 72%; top: 70%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/sticker.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--me" style="left: 80%; top: 50%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/me.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--arrow" style="left: 75%; top: 50%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/arrow.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--point" style="left: 65%; top: 30%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/point.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--cams-word" style="right: 50px; bottom: 1px;" title="draggable">
+                    <img src="assets/cam%27s%20word.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--cam" style="right: 0; bottom: 0;" title="draggable">
+                    <img src="assets/cam.png" alt="" draggable="false">
+                </a>
+                <h1>Welcome!</h1>
+                <p>This is some content.</p>
+            </div>
+            <div class="page page-right">
+                <a href="#" class="book-item book-item--japanese" style="left: 0; top: 0;" title="draggable">
+                    <img src="assets/japanese.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--person" style="right: 40px; top: 0;" title="draggable">
+                    <img src="assets/person.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--scrapbook" style="left: 25%; top: 50%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/scrapbook.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--im" style="left: 50%; top: 65%; transform: translate(-50%, -50%);" title="draggable">
+                    <img src="assets/I%27m.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--rabbit" style="left: 50%; bottom: 0; transform: translateX(-50%);" title="draggable">
+                    <img src="assets/rabbit.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--milky-way" style="right: 0; bottom: 0;" title="draggable">
+                    <img src="assets/milky%20way.png" alt="" draggable="false">
+                </a>
+                <a href="#" class="book-item book-item--cursive-corner" style="right: 0; bottom: 0;" title="draggable">
+                    <img src="assets/cursive-corner.png" alt="" draggable="false">
+                </a>
+                <p>Right</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var items = document.querySelectorAll('.book-item');
+            items.forEach(function (el) {
+                var dragging = false;
+                var startX, startY, startLeft, startTop;
+                el.addEventListener('mousedown', function (e) {
+                    if (e.button !== 0) return;
+                    dragging = false;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    var rect = el.getBoundingClientRect();
+                    startLeft = rect.left;
+                    startTop = rect.top;
+                    document.addEventListener('mousemove', onMove);
+                    document.addEventListener('mouseup', onUp);
+                });
+                function onMove(e) {
+                    var dx = e.clientX - startX;
+                    var dy = e.clientY - startY;
+                    if (!dragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) dragging = true;
+                    el.style.right = '';
+                    el.style.bottom = '';
+                    el.style.transform = '';
+                    el.style.left = (startLeft + dx - el.parentElement.getBoundingClientRect().left) + 'px';
+                    el.style.top = (startTop + dy - el.parentElement.getBoundingClientRect().top) + 'px';
+                }
+                function onUp() {
+                    document.removeEventListener('mousemove', onMove);
+                    document.removeEventListener('mouseup', onUp);
+                    if (dragging) {
+                        el.dataset.justDragged = '1';
+                        setTimeout(function () { delete el.dataset.justDragged; }, 100);
+                    }
+                }
+                el.addEventListener('click', function (e) {
+                    if (el.dataset.justDragged === '1') {
+                        e.preventDefault();
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
