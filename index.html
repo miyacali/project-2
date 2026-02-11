@@ -202,6 +202,7 @@
     </div>
     <script>
         (function () {
+            var topZ = 10;
             var items = document.querySelectorAll('.book-item');
             items.forEach(function (el) {
                 var dragging = false;
@@ -253,6 +254,8 @@
                         el.style.transform = '';
                         el.style.left = (leftPx / parentRect.width * 100) + '%';
                         el.style.top = (topPx / parentRect.height * 100) + '%';
+                        topZ += 1;
+                        el.style.zIndex = topZ;
                         el.dataset.justDragged = '1';
                         setTimeout(function () { delete el.dataset.justDragged; }, 150);
                     }
