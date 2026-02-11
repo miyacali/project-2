@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Web Page</title>
+    <link rel="icon" href="assets/book-cover.png" type="image/png">
+    <title>Sissi's Sketchbook</title>
     <style>
         * {
             box-sizing: border-box;
@@ -85,16 +86,29 @@
             padding: 1rem;
             position: relative;
         }
-        .page h1 {
-            margin: 0 0 0.5rem;
-            font-size: clamp(1rem, 2.5vw, 1.5rem);
-            color: #2c1810;
+        /* Mood overlay - not draggable */
+        .mood-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-out;
         }
-        .page p {
-            margin: 0;
-            font-size: clamp(0.85rem, 1.8vw, 1rem);
-            color: #3d2817;
-            line-height: 1.6;
+        .mood-overlay.is-visible {
+            opacity: 1;
+        }
+        .mood-overlay.is-fading {
+            opacity: 0;
+            transition: opacity 2.5s ease-out;
+        }
+        .mood-overlay img {
+            max-width: 80vw;
+            max-height: 80vh;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -117,7 +131,7 @@
                 <a href="#" class="book-item book-item--cursive" style="left: 30%; top: 73%; transform: translate(-50%, -50%);" title="draggable">
                     <img src="assets/cursive.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--yzk" style="left: 71%; bottom:-8%; transform: translateX(-50%);" title="draggable">
+                <a href="javascript:void(0)" class="book-item book-item--yzk" id="yzk-item" style="left: 71%; bottom:-8%; transform: translateX(-50%);" title="draggable">
                     <img src="assets/yzk.png" alt="" draggable="false">
                 </a>
                 <a href="https://youtu.be/7Az8BQYzUDo?si=gQt7EbURmUz2QmTh" target="_blank" class="book-item book-item--snoopy book-item--behind" style="left: 76%; top: 70%; transform: translate(-50%, -50%);" title="draggable">
@@ -141,8 +155,6 @@
                 <a href="https://en.wikipedia.org/wiki/James_Cameron" target="_blank" class="book-item book-item--cam" style="right: 0; bottom: -12%;" title="draggable">
                     <img src="assets/cam.png" alt="" draggable="false">
                 </a>
-                <h1>Welcome!</h1>
-                <p>This is some content.</p>
             </div>
             <div class="page page-right">
                 <a href="#" class="book-item book-item--japanese" style="left: -4%; top: -10%;" title="draggable">
@@ -169,11 +181,11 @@
                 <a href="https://youtu.be/h3nlE46HErA?si=3d-e2zPgnk_IU_xH" target="_blank" class="book-item book-item--rabbit" style="left:25%; bottom: -18%; transform: translateX(-50%);" title="draggable">
                     <img src="assets/rabbit.png" alt="" draggable="false">
                 </a>
-                
-              
-                <p>Right</p>
             </div>
         </div>
+    </div>
+    <div class="mood-overlay" id="mood-overlay" aria-hidden="true">
+        <img src="assets/mood.png" alt="">
     </div>
     <script>
         (function () {
@@ -220,6 +232,26 @@
                     }
                 });
             });
+            // YZK: click to show mood.png, then fade out slowly
+            var yzkEl = document.getElementById('yzk-item');
+            var moodOverlay = document.getElementById('mood-overlay');
+            if (yzkEl && moodOverlay) {
+                yzkEl.addEventListener('click', function (e) {
+                    if (yzkEl.dataset.justDragged === '1') return;
+                    e.preventDefault();
+                    e.stopPropagation();
+                    moodOverlay.classList.remove('is-fading');
+                    moodOverlay.classList.add('is-visible');
+                    moodOverlay.setAttribute('aria-hidden', 'false');
+                    setTimeout(function () {
+                        moodOverlay.classList.add('is-fading');
+                        setTimeout(function () {
+                            moodOverlay.classList.remove('is-visible', 'is-fading');
+                            moodOverlay.setAttribute('aria-hidden', 'true');
+                        }, 2500);
+                    }, 1500);
+                });
+            }
         })();
     </script>
 </body>
