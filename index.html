@@ -52,6 +52,16 @@
             cursor: move;
             z-index: 2;
             display: inline-block;
+            touch-action: manipulation;
+        }
+        .book-item.is-dragging {
+            cursor: grabbing;
+            z-index: 9999;
+            will-change: transform;
+            user-select: none;
+        }
+        body.is-dragging-page * {
+            user-select: none;
         }
         .book-item img {
             display: block;
@@ -116,69 +126,69 @@
     <div class="book-wrapper">
         <div class="book-pages">
             <div class="page page-left">
-                <a href="#" class="book-item book-item--word-web" id="word-web-item" style="left: 8%; top: -10%;" title="draggable">
+                <a href="#" class="book-item book-item--word-web" id="word-web-item" style="left: 8%; top: -10%;">
                     <img src="assets/word-web.png" alt="WORD WEB" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--observation" style="left: 12%; top: 7%;" title="draggable">
+                <a href="#" class="book-item book-item--observation" style="left: 12%; top: 7%;">
                     <img src="assets/observation.png" alt="" draggable="false">
                 </a>
-                <a href="https://youtu.be/nLlwQS77ULM?si=-13tSnAugLLrZzE-" target="_blank" class="book-item book-item--small-book" style="left: 8%; bottom: -14%;" title="draggable">
+                <a href="https://youtu.be/nLlwQS77ULM?si=-13tSnAugLLrZzE-" target="_blank" class="book-item book-item--small-book" style="left: 8%; bottom: -14%;">
                     <img src="assets/small-book.png" alt="" draggable="false">
                 </a>
-                <a href="https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=4b405d23783c4c6d" target="_blank" class="book-item book-item--radiohead" style="left:8%; top: 43%; transform: translateY(-50%);" title="draggable">
+                <a href="https://open.spotify.com/track/2fuYa3Lx06QQJAm0MjztKr?si=4b405d23783c4c6d" target="_blank" class="book-item book-item--radiohead" style="left:8%; top: 43%; transform: translateY(-50%);">
                     <img src="assets/radiohead.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--cursive" style="left: 30%; top: 73%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--cursive" style="left: 30%; top: 73%; transform: translate(-50%, -50%);">
                     <img src="assets/cursive.png" alt="" draggable="false">
                 </a>
-                <a href="javascript:void(0)" class="book-item book-item--yzk" id="yzk-item" style="left: 71%; bottom:-8%; transform: translateX(-50%);" title="draggable">
+                <a href="javascript:void(0)" class="book-item book-item--yzk" id="yzk-item" style="left: 71%; bottom:-8%; transform: translateX(-50%);">
                     <img src="assets/yzk.png" alt="" draggable="false">
                 </a>
-                <a href="https://youtu.be/7Az8BQYzUDo?si=gQt7EbURmUz2QmTh" target="_blank" class="book-item book-item--snoopy book-item--behind" style="left: 76%; top: 70%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="https://youtu.be/7Az8BQYzUDo?si=gQt7EbURmUz2QmTh" target="_blank" class="book-item book-item--snoopy book-item--behind" style="left: 76%; top: 70%; transform: translate(-50%, -50%);">
                     <img src="assets/snoopy.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--sticker" style="left: 72%; top: 70%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--sticker" style="left: 72%; top: 70%; transform: translate(-50%, -50%);">
                     <img src="assets/sticker.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--me" style="left: 80%; top: 25%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--me" style="left: 80%; top: 25%; transform: translate(-50%, -50%);">
                     <img src="assets/me.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--arrow" style="left: 90%; top: 85%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--arrow" style="left: 90%; top: 85%; transform: translate(-50%, -50%);">
                     <img src="assets/arrow.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--point" style="left: 70%; top: 40%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--point" style="left: 70%; top: 40%; transform: translate(-50%, -50%);">
                     <img src="assets/point.png" alt="" draggable="false">
                 </a>
-                <a href="https://www.cameronsworld.net/" target="_blank" class="book-item book-item--cams-world" style="right: 5%; bottom: -21%;" title="draggable">
+                <a href="https://www.cameronsworld.net/" target="_blank" class="book-item book-item--cams-world" style="right: 5%; bottom: -21%;">
                     <img src="assets/cam%27s%20world.png" alt="" draggable="false">
                 </a>
-                <a href="https://en.wikipedia.org/wiki/James_Cameron" target="_blank" class="book-item book-item--cam" style="right: 0; bottom: -12%;" title="draggable">
+                <a href="https://en.wikipedia.org/wiki/James_Cameron" target="_blank" class="book-item book-item--cam" style="right: 0; bottom: -12%;">
                     <img src="assets/cam.png" alt="" draggable="false">
                 </a>
             </div>
             <div class="page page-right">
-                <a href="#" class="book-item book-item--japanese" style="left: -4%; top: -10%;" title="draggable">
+                <a href="#" class="book-item book-item--japanese" style="left: -4%; top: -10%;">
                     <img src="assets/japanese.png" alt="" draggable="false">
                 </a>
-                <a href="https://youtu.be/Bw-5Lka7gPE?si=5GlPqL5_hiNw5hGN" target="_blank" class="book-item book-item--person" style="right: 10%; top: -15%;" title="draggable">
+                <a href="https://youtu.be/Bw-5Lka7gPE?si=5GlPqL5_hiNw5hGN" target="_blank" class="book-item book-item--person" style="right: 10%; top: -15%;">
                     <img src="assets/person.png" alt="" draggable="false">
                 </a>
-                <a href="https://pin.it/5xAkDE1fF" target="_blank" class="book-item book-item--scrapbook" style="left: 18%; top: 20%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="https://pin.it/5xAkDE1fF" target="_blank" class="book-item book-item--scrapbook" style="left: 18%; top: 20%; transform: translate(-50%, -50%);">
                     <img src="assets/scrapbook.png" alt="" draggable="false">
                 </a>
-                <a href="https://teaching.rice.edu/canvas" target="_blank" class="book-item book-item--ahhhh" style="left: 20%; top: 45%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="https://teaching.rice.edu/canvas" target="_blank" class="book-item book-item--ahhhh" style="left: 20%; top: 45%; transform: translate(-50%, -50%);">
                     <img src="assets/ahhhh.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--cursive-corner" style="right: 8%; bottom: 10%;" title="draggable">
+                <a href="#" class="book-item book-item--cursive-corner" style="right: 8%; bottom: 10%;">
                     <img src="assets/cursive-corner.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--im" style="left: 38%; top: 70%; transform: translate(-50%, -50%);" title="draggable">
+                <a href="#" class="book-item book-item--im" style="left: 38%; top: 70%; transform: translate(-50%, -50%);">
                     <img src="assets/I%27m.png" alt="" draggable="false">
                 </a>
-                <a href="#" class="book-item book-item--milky-way" style="right: 12%; bottom: -15%;" title="draggable">
+                <a href="#" class="book-item book-item--milky-way" style="right: 12%; bottom: -15%;">
                     <img src="assets/milky%20way.png" alt="" draggable="false">
                 </a>
-                <a href="https://youtu.be/h3nlE46HErA?si=3d-e2zPgnk_IU_xH" target="_blank" class="book-item book-item--rabbit" style="left:25%; bottom: -18%; transform: translateX(-50%);" title="draggable">
+                <a href="https://youtu.be/h3nlE46HErA?si=3d-e2zPgnk_IU_xH" target="_blank" class="book-item book-item--rabbit" style="left:25%; bottom: -18%; transform: translateX(-50%);">
                     <img src="assets/rabbit.png" alt="" draggable="false">
                 </a>
             </div>
@@ -192,38 +202,56 @@
             var items = document.querySelectorAll('.book-item');
             items.forEach(function (el) {
                 var dragging = false;
-                var startX, startY, startLeft, startTop;
-                el.addEventListener('mousedown', function (e) {
-                    if (e.button !== 0) return;
+                var startX, startY, startLeft, startTop, originalTransform, activePointerId;
+                function startDrag(e) {
+                    if (e.pointerType === 'mouse' && e.button !== 0) return;
                     dragging = false;
+                    activePointerId = e.pointerId;
                     startX = e.clientX;
                     startY = e.clientY;
                     var rect = el.getBoundingClientRect();
-                    startLeft = rect.left;
-                    startTop = rect.top;
-                    document.addEventListener('mousemove', onMove);
-                    document.addEventListener('mouseup', onUp);
-                });
-                function onMove(e) {
-                    var dx = e.clientX - startX;
-                    var dy = e.clientY - startY;
-                    if (!dragging && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) dragging = true;
                     var parent = el.parentElement;
                     var parentRect = parent.getBoundingClientRect();
-                    var leftPx = startLeft + dx - parentRect.left;
-                    var topPx = startTop + dy - parentRect.top;
-                    el.style.right = '';
-                    el.style.bottom = '';
-                    el.style.transform = '';
-                    el.style.left = (leftPx / parentRect.width * 100) + '%';
-                    el.style.top = (topPx / parentRect.height * 100) + '%';
+                    startLeft = rect.left - parentRect.left;
+                    startTop = rect.top - parentRect.top;
+                    originalTransform = el.style.transform || '';
+                    el.classList.add('is-dragging');
+                    document.body.classList.add('is-dragging-page');
+                    try { el.setPointerCapture(e.pointerId); } catch (err) {}
+                    document.addEventListener('pointermove', onMove, { passive: true, capture: true });
+                    document.addEventListener('pointerup', onUp, true);
+                    document.addEventListener('pointercancel', onUp, true);
                 }
-                function onUp() {
-                    document.removeEventListener('mousemove', onMove);
-                    document.removeEventListener('mouseup', onUp);
+                el.addEventListener('pointerdown', startDrag);
+                el.addEventListener('dragstart', function (e) { e.preventDefault(); });
+                function onMove(e) {
+                    if (e.pointerId !== activePointerId) return;
+                    var dx = e.clientX - startX;
+                    var dy = e.clientY - startY;
+                    if (!dragging && (Math.abs(dx) > 2 || Math.abs(dy) > 2)) dragging = true;
+                    el.style.transform = (originalTransform ? originalTransform + ' ' : '') + 'translate3d(' + dx + 'px,' + dy + 'px,0)';
+                }
+                function onUp(e) {
+                    if (e.pointerId !== activePointerId) return;
+                    try { el.releasePointerCapture(e.pointerId); } catch (err) {}
+                    document.removeEventListener('pointermove', onMove, true);
+                    document.removeEventListener('pointerup', onUp, true);
+                    document.removeEventListener('pointercancel', onUp, true);
+                    el.classList.remove('is-dragging');
+                    document.body.classList.remove('is-dragging-page');
                     if (dragging) {
+                        var parent = el.parentElement;
+                        var parentRect = parent.getBoundingClientRect();
+                        var rect = el.getBoundingClientRect();
+                        var leftPx = rect.left - parentRect.left;
+                        var topPx = rect.top - parentRect.top;
+                        el.style.right = '';
+                        el.style.bottom = '';
+                        el.style.transform = '';
+                        el.style.left = (leftPx / parentRect.width * 100) + '%';
+                        el.style.top = (topPx / parentRect.height * 100) + '%';
                         el.dataset.justDragged = '1';
-                        setTimeout(function () { delete el.dataset.justDragged; }, 100);
+                        setTimeout(function () { delete el.dataset.justDragged; }, 150);
                     }
                 }
                 el.addEventListener('click', function (e) {
